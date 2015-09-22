@@ -14,6 +14,9 @@ class MainScene: GamePlayScene {
     let distanceBetweenObstacles: CGFloat = 160
     
     weak var _obstaclesLayer: CCNode!
+    weak var _restartButton: CCNode!
+    weak var _scoreLabel: CCLabelTTF!
+    var points = 0
     
     override func didLoadFromCCB() {
         super.didLoadFromCCB()
@@ -30,8 +33,10 @@ class MainScene: GamePlayScene {
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        hero?.flap()
-        sinceTouch = 0
+        if (!isGameOver) {
+            hero?.flap()
+            sinceTouch = 0
+        }
     }
     
     func spawnNewObstacle() {
@@ -65,5 +70,46 @@ class MainScene: GamePlayScene {
                 spawnNewObstacle()
             }
         }
+    }
+    
+    func restart() {
+        let scene = CCBReader.loadAsScene("MainScene")
+        CCDirector.sharedDirector().replaceScene(scene)
+    }
+    
+    func gameOver() {
+        if (isGameOver == false) {
+            //prevents update() in gamePlayScene from being called
+            isGameOver = true
+            
+            //make the button show up
+            _restartButton.visible = true
+            
+            //stop scrolling
+            scrollSpeed = 0
+            
+            //stop all hero action
+            hero?.rotation = 90
+            hero?.physicsBody.allowsRotation = false
+            hero?.stopAllActions()
+            
+            //shake the screen
+            let move = CCActionEaseBounceOut(action: CCActionMoveBy(duration: 0.1, position: ccp(0, 4)))
+            let moveBack = CCActionEaseBounceOut(action: move.reverse())
+            let shakeSequence = CCActionSequence(array: [move, moveBack])
+            runAction(shakeSequence)
+        }
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!,level: CCNode!) -> Bool {
+        gameOver()
+        return true
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!,hero: CCNode!,goal: CCNode!) -> Bool {
+        goal.removeFromParent()
+        points++
+        _scoreLabel.string = String(points)
+        return true
     }
 }
