@@ -21,6 +21,7 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
     var obstacles: [CCNode] = [] //initializes an empty array
     var sinceTouch: CCTime = 0
     var isGameOver = false
+
     
     func didLoadFromCCB() {
         //add to array of ground objects
@@ -41,7 +42,7 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
             // clamp angular velocity
             sinceTouch += delta
             // rotate downwards if enough time passed since last touch
-            if (sinceTouch > 0.55) {
+            if (sinceTouch > 0.45) {
                 let impulse = -18000.0 * delta
                 hero?.physicsBody.applyAngularImpulse(CGFloat(impulse))
             }

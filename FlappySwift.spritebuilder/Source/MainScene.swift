@@ -7,19 +7,67 @@
 //
 
 import UIKit
+import AVFoundation
+
+var highscoreCount = 0
 
 class MainScene: GamePlayScene {
 
     let firstObstaclePosition: CGFloat = 200
-    let distanceBetweenObstacles: CGFloat = 160
+    let distanceBetweenObstacles: CGFloat = 180
     
     weak var _obstaclesLayer: CCNode!
     weak var _restartButton: CCNode!
     weak var _scoreLabel: CCLabelTTF!
+    weak var highScoreLabel: CCLabelTTF!
     var points = 0
+    var audioPlayer = AVAudioPlayer()
+    var audioPlayer2 = AVAudioPlayer()
+    
+    var defaults = NSUserDefaults()
+    
+    
+    func playAudio() {
+        do {
+            if let bundle = NSBundle.mainBundle().pathForResource("seaBreeze", ofType: "mp3") {
+                let alertSound = NSURL(fileURLWithPath: bundle)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setActive(true)
+                try audioPlayer = AVAudioPlayer(contentsOfURL: alertSound)
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func playAudio2() {
+        do {
+            if let bundle = NSBundle.mainBundle().pathForResource("ohh", ofType: "mp3") {
+                let alertSound = NSURL(fileURLWithPath: bundle)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setActive(true)
+                try audioPlayer2 = AVAudioPlayer(contentsOfURL: alertSound)
+                audioPlayer2.prepareToPlay()
+                audioPlayer2.play()
+            }
+        } catch {
+            print(error)
+        }
+    }
     
     override func didLoadFromCCB() {
         super.didLoadFromCCB()
+        
+        highScoreLabel.string = String(defaults.integerForKey("highscore"))
+        
+        
+        
+        
+        
+        playAudio()
+        
         
         userInteractionEnabled = true
         _gamePhysicsNode.collisionDelegate = self
@@ -82,6 +130,16 @@ class MainScene: GamePlayScene {
             //prevents update() in gamePlayScene from being called
             isGameOver = true
             
+            
+            
+            audioPlayer.stop()
+            playAudio2()
+            
+//            var gameover = UIView(frame: CGRectMake(0, 0, 200, 500))
+//            gameover.backgroundColor = UIColor.blackColor()
+//            self.view.addSubview(gameover)
+            
+            
             //make the button show up
             _restartButton.visible = true
             
@@ -110,6 +168,22 @@ class MainScene: GamePlayScene {
         goal.removeFromParent()
         points++
         _scoreLabel.string = String(points)
+        
+        var highscore = defaults.integerForKey("highscore")
+        
+        if points > highscore {
+            
+            defaults.setInteger(points, forKey: "highscore")
+            
+        }
+        
+        var highscoreShow = defaults.integerForKey("highscore")
+        highScoreLabel.string = String(highscoreShow)
+        highscoreCount = highscoreShow
+        
+       
+        
+        
         return true
     }
 }

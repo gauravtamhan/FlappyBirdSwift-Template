@@ -24,6 +24,8 @@ class Obstacle: CCNode {
         self.position = CGPoint(x:self.position.x, y:minimumYPosition + (random * range))
     }
     
+// This makes the bird fall straight down after a collision
+    
     func didLoadFromCCB() {
         _topPipe.physicsBody.sensor = true
         _bottomPipe.physicsBody.sensor = true

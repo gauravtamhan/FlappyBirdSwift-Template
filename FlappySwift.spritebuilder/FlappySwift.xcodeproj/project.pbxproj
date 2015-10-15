@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5A130A5F1BB106A000B6C2FF /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A130A5E1BB106A000B6C2FF /* MainScene.swift */; settings = {ASSET_TAGS = (); }; };
+		5AB989171BCC4C51009D0704 /* ohh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5AB989161BCC4C51009D0704 /* ohh.mp3 */; settings = {ASSET_TAGS = (); }; };
+		5AB9891B1BCC4E69009D0704 /* seaBreeze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9891A1BCC4E69009D0704 /* seaBreeze.mp3 */; settings = {ASSET_TAGS = (); }; };
+		5ABEEA3A1BC60DD7005AF270 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5ABEEA391BC60DD7005AF270 /* bg.mp3 */; settings = {ASSET_TAGS = (); }; };
+		5AD428B71BB591D500AAA8BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AD428B61BB591D500AAA8BF /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* FlappySwiftActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* FlappySwiftActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
@@ -152,6 +156,10 @@
 
 /* Begin PBXFileReference section */
 		5A130A5E1BB106A000B6C2FF /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Source/MainScene.swift; sourceTree = "<group>"; };
+		5AB989161BCC4C51009D0704 /* ohh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ohh.mp3; path = ../../../Downloads/ohh.mp3; sourceTree = "<group>"; };
+		5AB9891A1BCC4E69009D0704 /* seaBreeze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = seaBreeze.mp3; path = ../../../Downloads/seaBreeze.mp3; sourceTree = "<group>"; };
+		5ABEEA391BC60DD7005AF270 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bg.mp3; path = ../../../Downloads/bg.mp3; sourceTree = "<group>"; };
+		5AD428B61BB591D500AAA8BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "FlappySwift iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -278,6 +286,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5ABEEA361BC60DC6005AF270 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9891A1BCC4E69009D0704 /* seaBreeze.mp3 */,
+				5AB989161BCC4C51009D0704 /* ohh.mp3 */,
+				5ABEEA391BC60DD7005AF270 /* bg.mp3 */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
 		5B12100D197483EE004C1E1D /* res */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +541,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5AD428B61BB591D500AAA8BF /* Images.xcassets */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
 				B73789911807667A0076A88C /* Icons */,
@@ -536,6 +555,7 @@
 		B77F1CCF17B978D8009739AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5ABEEA361BC60DC6005AF270 /* Music */,
 				7A40365D19DDF896007B6E8F /* Platforms */,
 				7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */,
 				7AFCD5DB19E9BD9F00BCCCDA /* cocos2d.h */,
@@ -637,6 +657,7 @@
 						CreatedOnToolsVersion = 6.0.1;
 					};
 					B77F1B2D17B978D7009739AE = {
+						DevelopmentTeam = UB27646KD6;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -753,15 +774,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
+				5AB9891B1BCC4E69009D0704 /* seaBreeze.mp3 in Resources */,
+				5AD428B71BB591D500AAA8BF /* Images.xcassets in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				5AB989171BCC4C51009D0704 /* ohh.mp3 in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
+				5ABEEA3A1BC60DD7005AF270 /* bg.mp3 in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
@@ -1128,6 +1153,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1151,6 +1178,7 @@
 					"-lz",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = monkeykissbooty;
 				PRODUCT_NAME = FlappySwift;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
@@ -1164,6 +1192,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1185,6 +1215,7 @@
 					"-lz",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = monkeykissbooty;
 				PRODUCT_NAME = FlappySwift;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";

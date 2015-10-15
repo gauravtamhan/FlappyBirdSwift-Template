@@ -57,7 +57,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>FlappyBirdArtPack/fly1.png</string>
+								<string>FlappyBirdArtPack/biscuit.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -75,7 +75,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>FlappyBirdArtPack/fly2.png</string>
+								<string>FlappyBirdArtPack/biscuit2.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -93,7 +93,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>FlappyBirdArtPack/fly1.png</string>
+								<string>FlappyBirdArtPack/biscuit.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -111,7 +111,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>FlappyBirdArtPack/fly2.png</string>
+								<string>FlappyBirdArtPack/biscuit2.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -129,7 +129,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>FlappyBirdArtPack/fly1.png</string>
+								<string>FlappyBirdArtPack/biscuit.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -147,7 +147,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>FlappyBirdArtPack/fly2.png</string>
+								<string>FlappyBirdArtPack/biscuit2.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -165,7 +165,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>FlappyBirdArtPack/fly1.png</string>
+								<string>FlappyBirdArtPack/biscuit.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -216,8 +216,8 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>17</real>
-					<real>12</real>
+					<real>25.19140625</real>
+					<real>17.921875</real>
 				</array>
 			</array>
 			<key>polygons</key>
@@ -284,7 +284,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>FlappyBirdArtPack/fly2.png</string>
+					<string>FlappyBirdArtPack/biscuit.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -379,7 +379,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.10000000149011612</real>
+			<real>1</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
