@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7A4035FE19DDEE84007B6E8F"
-               BuildableName = "FlappySwift Mac.app"
+               BuildableName = "FlappySwift.app"
                BlueprintName = "FlappySwift Mac"
                ReferencedContainer = "container:FlappySwift.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A4035FE19DDEE84007B6E8F"
-            BuildableName = "FlappySwift Mac.app"
+            BuildableName = "FlappySwift.app"
             BlueprintName = "FlappySwift Mac"
             ReferencedContainer = "container:FlappySwift.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A4035FE19DDEE84007B6E8F"
-            BuildableName = "FlappySwift Mac.app"
+            BuildableName = "FlappySwift.app"
             BlueprintName = "FlappySwift Mac"
             ReferencedContainer = "container:FlappySwift.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A4035FE19DDEE84007B6E8F"
-            BuildableName = "FlappySwift Mac.app"
+            BuildableName = "FlappySwift.app"
             BlueprintName = "FlappySwift Mac"
             ReferencedContainer = "container:FlappySwift.xcodeproj">
          </BuildableReference>
