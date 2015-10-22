@@ -17,19 +17,27 @@ class MainScene: GamePlayScene {
     let distanceBetweenObstacles: CGFloat = 180
     
     weak var _obstaclesLayer: CCNode!
+    
     weak var _restartButton: CCNode!
+    weak var _quitButton: CCNode!
+    weak var _darkScreen: CCNode!
+    weak var _line: CCLabelTTF!
     weak var _scoreLabel: CCLabelTTF!
+    weak var _scoreLabelEnd: CCLabelTTF!
+    weak var _scoreEnd: CCLabelTTF!
+    weak var _highScoreLabel: CCLabelTTF!
     weak var highScoreLabel: CCLabelTTF!
+    
     var points = 0
     var audioPlayer = AVAudioPlayer()
     var audioPlayer2 = AVAudioPlayer()
     
-    var defaults = NSUserDefaults()
+    //var defaults = NSUserDefaults()
     
     
     func playAudio() {
         do {
-            if let bundle = NSBundle.mainBundle().pathForResource("seaBreeze", ofType: "mp3") {
+            if let bundle = NSBundle.mainBundle().pathForResource("FrenchMusic", ofType: "mp3") {
                 let alertSound = NSURL(fileURLWithPath: bundle)
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                 try AVAudioSession.sharedInstance().setActive(true)
@@ -44,7 +52,7 @@ class MainScene: GamePlayScene {
     
     func playAudio2() {
         do {
-            if let bundle = NSBundle.mainBundle().pathForResource("ohh", ofType: "mp3") {
+            if let bundle = NSBundle.mainBundle().pathForResource("laugh", ofType: "mp3") {
                 let alertSound = NSURL(fileURLWithPath: bundle)
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                 try AVAudioSession.sharedInstance().setActive(true)
@@ -61,8 +69,6 @@ class MainScene: GamePlayScene {
         super.didLoadFromCCB()
         
         highScoreLabel.string = String(defaults.integerForKey("highscore"))
-        
-        
         
         
         
@@ -113,7 +119,6 @@ class MainScene: GamePlayScene {
                 if let index = obstacles.indexOf(obstacle) {
                     obstacles.removeAtIndex(index)
                 }
-                // obstacles.find(indexOf(obstacles, obstacle)!)
                 
                 spawnNewObstacle()
             }
@@ -123,6 +128,11 @@ class MainScene: GamePlayScene {
     func restart() {
         let scene = CCBReader.loadAsScene("MainScene")
         CCDirector.sharedDirector().replaceScene(scene)
+    }
+    
+    func quit() {
+        let scene2 = CCBReader.loadAsScene("StartScene")
+        CCDirector.sharedDirector().replaceScene(scene2)
     }
     
     func gameOver() {
@@ -135,13 +145,21 @@ class MainScene: GamePlayScene {
             audioPlayer.stop()
             playAudio2()
             
-//            var gameover = UIView(frame: CGRectMake(0, 0, 200, 500))
-//            gameover.backgroundColor = UIColor.blackColor()
-//            self.view.addSubview(gameover)
-            
             
             //make the button show up
+            _darkScreen.visible = true
             _restartButton.visible = true
+            _quitButton.visible = true
+            _line.visible = true
+            
+            _scoreLabelEnd.visible = true
+            _scoreEnd.visible = true
+            _highScoreLabel.visible = true
+            highScoreLabel.visible = true
+            
+            self.animationManager.runAnimationsForSequenceNamed("game over")
+            
+            
             
             //stop scrolling
             scrollSpeed = 0
@@ -152,7 +170,7 @@ class MainScene: GamePlayScene {
             hero?.stopAllActions()
             
             //shake the screen
-            let move = CCActionEaseBounceOut(action: CCActionMoveBy(duration: 0.1, position: ccp(0, 4)))
+            let move = CCActionEaseBounceOut(action: CCActionMoveBy(duration: 0.1, position: ccp(0, 3)))
             let moveBack = CCActionEaseBounceOut(action: move.reverse())
             let shakeSequence = CCActionSequence(array: [move, moveBack])
             runAction(shakeSequence)
@@ -168,8 +186,9 @@ class MainScene: GamePlayScene {
         goal.removeFromParent()
         points++
         _scoreLabel.string = String(points)
+        _scoreLabelEnd.string = String(points)
         
-        var highscore = defaults.integerForKey("highscore")
+        let highscore = defaults.integerForKey("highscore")
         
         if points > highscore {
             
@@ -177,7 +196,7 @@ class MainScene: GamePlayScene {
             
         }
         
-        var highscoreShow = defaults.integerForKey("highscore")
+        let highscoreShow = defaults.integerForKey("highscore")
         highScoreLabel.string = String(highscoreShow)
         highscoreCount = highscoreShow
         

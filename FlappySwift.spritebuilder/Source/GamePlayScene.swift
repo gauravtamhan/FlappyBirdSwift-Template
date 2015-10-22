@@ -9,7 +9,7 @@
 import UIKit
 
 class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
-    var scrollSpeed: CGFloat = 100 //How fast the screen moves
+    var scrollSpeed: CGFloat = 110 //How fast the screen moves
     
     weak var hero: Character? //Later initialized in MainScene.swift
     
@@ -21,6 +21,8 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
     var obstacles: [CCNode] = [] //initializes an empty array
     var sinceTouch: CCTime = 0
     var isGameOver = false
+    
+    var defaults = NSUserDefaults()
 
     
     func didLoadFromCCB() {
@@ -33,6 +35,13 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
         if (!isGameOver) {
             hero?.position = ccp(hero!.position.x + scrollSpeed * CGFloat(delta), hero!.position.y)
             _gamePhysicsNode.position = ccp(_gamePhysicsNode.position.x - scrollSpeed * CGFloat(delta), _gamePhysicsNode.position.y)
+            
+            
+//            // speeds up the game scrolling
+//            if scrollSpeed < 160 {
+//                scrollSpeed = scrollSpeed + 0.1
+//            }
+            
             
             // clamp physics node and hero position to the next nearest pixel value to avoid black line artifacts
             let scale = CCDirector.sharedDirector().contentScaleFactor
