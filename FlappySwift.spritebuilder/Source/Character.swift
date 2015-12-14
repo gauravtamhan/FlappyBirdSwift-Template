@@ -10,7 +10,7 @@ import UIKit
 
 class Character: CCSprite {
     func didLoadFromCCB() {
-        self.position = CGPoint(x:115, y:450) // y was 250
+        self.position = CGPoint(x:115, y:250) // y was 250
     }
     
     func flap() {

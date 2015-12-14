@@ -29,6 +29,7 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
         //add to array of ground objects
         grounds.append(_ground1)
         grounds.append(_ground2)
+    
     }
     
     override func update(delta: CCTime) {

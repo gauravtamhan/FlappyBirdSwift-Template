@@ -11,8 +11,6 @@
 		5A130A5F1BB106A000B6C2FF /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A130A5E1BB106A000B6C2FF /* MainScene.swift */; };
 		5A2742911BD47FE400B3215B /* FrenchMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5A2742901BD47FE400B3215B /* FrenchMusic.mp3 */; };
 		5A2742951BD48EA500B3215B /* laugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5A2742941BD48EA500B3215B /* laugh.mp3 */; };
-		5A4161061BD84DD900105A10 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4161051BD84DD900105A10 /* Menus.swift */; };
-		5A783BB51BD8546B00E7C093 /* OptionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A783BB41BD8546B00E7C093 /* OptionScene.swift */; };
 		5AD428B71BB591D500AAA8BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AD428B61BB591D500AAA8BF /* Images.xcassets */; };
 		5AFA5C741BD976FD002CF23E /* menuMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5AFA5C731BD976FD002CF23E /* menuMusic.mp3 */; };
 		5B121030197484FA004C1E1D /* FlappySwiftActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* FlappySwiftActivity.m */; };
@@ -162,8 +160,6 @@
 		5A130A5E1BB106A000B6C2FF /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Source/MainScene.swift; sourceTree = "<group>"; };
 		5A2742901BD47FE400B3215B /* FrenchMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FrenchMusic.mp3; sourceTree = "<group>"; };
 		5A2742941BD48EA500B3215B /* laugh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laugh.mp3; sourceTree = "<group>"; };
-		5A4161051BD84DD900105A10 /* Menus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
-		5A783BB41BD8546B00E7C093 /* OptionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionScene.swift; sourceTree = "<group>"; };
 		5AD428B61BB591D500AAA8BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "FlappySwift iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		5AFA5C731BD976FD002CF23E /* menuMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuMusic.mp3; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
@@ -584,8 +580,6 @@
 				DFE49C111B86DC7A006FD35E /* Character.swift */,
 				5A130A5E1BB106A000B6C2FF /* MainScene.swift */,
 				5A04A9E41BD58CCF00807B94 /* StartScene.swift */,
-				5A4161051BD84DD900105A10 /* Menus.swift */,
-				5A783BB41BD8546B00E7C093 /* OptionScene.swift */,
 				DFE49C131B86DC9A006FD35E /* Obstacle.swift */,
 				DFE49C151B86DCB3006FD35E /* Goal.swift */,
 			);
@@ -875,11 +869,9 @@
 			files = (
 				DFE49C0F1B86DC5D006FD35E /* GamePlayScene.swift in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
-				5A4161061BD84DD900105A10 /* Menus.swift in Sources */,
 				DFE49C141B86DC9A006FD35E /* Obstacle.swift in Sources */,
 				5A130A5F1BB106A000B6C2FF /* MainScene.swift in Sources */,
 				DFE49C121B86DC7A006FD35E /* Character.swift in Sources */,
-				5A783BB51BD8546B00E7C093 /* OptionScene.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				DFE49C161B86DCB3006FD35E /* Goal.swift in Sources */,
 				5A04A9E51BD58CCF00807B94 /* StartScene.swift in Sources */,

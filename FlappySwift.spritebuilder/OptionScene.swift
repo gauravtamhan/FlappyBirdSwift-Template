@@ -11,11 +11,18 @@ import UIKit
 class OptionScene: Menus {
     
     override func didLoadFromCCB() {
-        super.didLoadFromCCB()
+        if (sound == true) {
+            playAudio()
+        }
     }
     
     override func update(delta: CCTime) {
     
+    }
+    
+    func back() {
+        let scene = CCBReader.loadAsScene("StartScene")
+        CCDirector.sharedDirector().replaceScene(scene)
     }
 
 }

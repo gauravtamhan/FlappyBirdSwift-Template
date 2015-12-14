@@ -13,7 +13,7 @@ var highscoreCount = 0
 
 class MainScene: GamePlayScene {
 
-    let firstObstaclePosition: CGFloat = 200
+    let firstObstaclePosition: CGFloat = 500
     let distanceBetweenObstacles: CGFloat = 180
     
     weak var _obstaclesLayer: CCNode!
@@ -34,12 +34,11 @@ class MainScene: GamePlayScene {
     
     //var defaults = NSUserDefaults()
     
-    
     func playAudio() {
         do {
             if let bundle = NSBundle.mainBundle().pathForResource("FrenchMusic", ofType: "mp3") {
                 let alertSound = NSURL(fileURLWithPath: bundle)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
                 try AVAudioSession.sharedInstance().setActive(true)
                 try audioPlayer = AVAudioPlayer(contentsOfURL: alertSound)
                 audioPlayer.prepareToPlay()
@@ -54,7 +53,7 @@ class MainScene: GamePlayScene {
         do {
             if let bundle = NSBundle.mainBundle().pathForResource("laugh", ofType: "mp3") {
                 let alertSound = NSURL(fileURLWithPath: bundle)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
                 try AVAudioSession.sharedInstance().setActive(true)
                 try audioPlayer2 = AVAudioPlayer(contentsOfURL: alertSound)
                 audioPlayer2.prepareToPlay()
@@ -69,17 +68,17 @@ class MainScene: GamePlayScene {
         super.didLoadFromCCB()
         
         highScoreLabel.string = String(defaults.integerForKey("highscore"))
-        
-        
-        
+     
         playAudio()
-        
         
         userInteractionEnabled = true
         _gamePhysicsNode.collisionDelegate = self
         
         hero = CCBReader.load("Character") as? Character
         _gamePhysicsNode.addChild(hero)
+        
+        _gamePhysicsNode.gravity = CGPoint(x: 0.0, y: 0.0)
+        
         
         for var i = 1; i < 4; ++i {
             spawnNewObstacle()
@@ -91,6 +90,7 @@ class MainScene: GamePlayScene {
             hero?.flap()
             sinceTouch = 0
         }
+        _gamePhysicsNode.gravity = CGPoint(x: 0.0, y: -850.0)
     }
     
     func spawnNewObstacle() {
