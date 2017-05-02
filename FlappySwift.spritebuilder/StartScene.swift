@@ -30,14 +30,14 @@ class StartScene: GamePlayScene {
         playAudio()
     }
     
-    override func update(delta: CCTime) {
+    override func update(_ delta: CCTime) {
         
     }
     
     func play() {
         
-        let scene = CCBReader.loadAsScene("MainScene")
-        CCDirector.sharedDirector().replaceScene(scene)
+        let scene = CCBReader.load(asScene: "MainScene")
+        CCDirector.shared().replace(scene)
     }
     
     func options() {
@@ -70,7 +70,7 @@ class StartScene: GamePlayScene {
     }
     
     func yes() {
-        defaults.setInteger(0, forKey: "highscore")
+        defaults.set(0, forKey: "highscore")
         
         _sureLabel.visible = false
         _yesButton.visible = false
@@ -80,7 +80,7 @@ class StartScene: GamePlayScene {
         _resetButton.visible = true
         
         _conformationLabel.visible = true
-        self.animationManager.runAnimationsForSequenceNamed("Other Timeline")
+        self.animationManager.runAnimations(forSequenceNamed: "Other Timeline")
     }
     
     func no() {
@@ -94,11 +94,11 @@ class StartScene: GamePlayScene {
     
     func playAudio() {
         do {
-            if let bundle = NSBundle.mainBundle().pathForResource("menuMusic", ofType: "mp3") {
-                let alertSound = NSURL(fileURLWithPath: bundle)
+            if let bundle = Bundle.main.path(forResource: "menuMusic", ofType: "mp3") {
+                let alertSound = URL(fileURLWithPath: bundle)
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
                 try AVAudioSession.sharedInstance().setActive(true)
-                try audioPlayer = AVAudioPlayer(contentsOfURL: alertSound)
+                try audioPlayer = AVAudioPlayer(contentsOf: alertSound)
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()
             }

@@ -22,7 +22,7 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
     var sinceTouch: CCTime = 0
     var isGameOver = false
     
-    var defaults = NSUserDefaults()
+    var defaults = UserDefaults()
 
     
     func didLoadFromCCB() {
@@ -32,7 +32,7 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
     
     }
     
-    override func update(delta: CCTime) {
+    override func update(_ delta: CCTime) {
         if (!isGameOver) {
             hero?.position = ccp(hero!.position.x + scrollSpeed * CGFloat(delta), hero!.position.y)
             _gamePhysicsNode.position = ccp(_gamePhysicsNode.position.x - scrollSpeed * CGFloat(delta), _gamePhysicsNode.position.y)
@@ -45,7 +45,7 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
             
             
             // clamp physics node and hero position to the next nearest pixel value to avoid black line artifacts
-            let scale = CCDirector.sharedDirector().contentScaleFactor
+            let scale = CCDirector.shared().contentScaleFactor
             hero?.position = ccp(round(hero!.position.x * scale) / scale, round(hero!.position.y * scale) / scale)
             _gamePhysicsNode.position = ccp(round(_gamePhysicsNode.position.x * scale) / scale, round(_gamePhysicsNode.position.y * scale) / scale)
             
@@ -59,7 +59,7 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
             
             // clamp velocity
             if (hero != nil) {
-                let velocityY = clampf(Float(hero!.physicsBody.velocity.y), -Float(CGFloat.max), 200)
+                let velocityY = clampf(Float(hero!.physicsBody.velocity.y), -Float(CGFloat.greatestFiniteMagnitude), 200)
                 hero?.physicsBody.velocity = ccp(0, CGFloat(velocityY))
             }
             
@@ -72,9 +72,9 @@ class GamePlayScene : CCNode, CCPhysicsCollisionDelegate {
             // loop the ground whenever a ground image was moved entirely outside the screen
             for ground in grounds {
                 // get the world position of the ground
-                let groundWorldPosition = _gamePhysicsNode.convertToWorldSpace(ground.position)
+                let groundWorldPosition = _gamePhysicsNode.convert(toWorldSpace: ground.position)
                 // get the screen position of the ground
-                let groundScreenPosition = convertToNodeSpace(groundWorldPosition)
+                let groundScreenPosition = convert(toNodeSpace: groundWorldPosition)
                 // if the left corner is one complete width off the screen, move it to the right
                 if groundScreenPosition.x <= (-ground.contentSize.width) {
                     ground.position = ccp(ground.position.x + ground.contentSize.width * 2, ground.position.y)

@@ -19,7 +19,7 @@ class Obstacle: CCNode {
     func setupRandomPosition() {
         
         // calculate the end of the range of top pipe
-        let random:CGFloat = (CGFloat(rand()) / CGFloat(RAND_MAX))
+        let random:CGFloat = (CGFloat(arc4random()) / CGFloat(RAND_MAX))
         let range:CGFloat = maximumYPosition - minimumYPosition
         self.position = CGPoint(x:self.position.x, y:minimumYPosition + (random * range))
     }

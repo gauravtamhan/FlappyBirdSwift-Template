@@ -13,7 +13,7 @@ var highscoreCount = 0
 
 class MainScene: GamePlayScene {
 
-    let firstObstaclePosition: CGFloat = 500
+    let firstObstaclePosition: CGFloat = 300
     let distanceBetweenObstacles: CGFloat = 180
     
     weak var _obstaclesLayer: CCNode!
@@ -36,11 +36,11 @@ class MainScene: GamePlayScene {
     
     func playAudio() {
         do {
-            if let bundle = NSBundle.mainBundle().pathForResource("FrenchMusic", ofType: "mp3") {
-                let alertSound = NSURL(fileURLWithPath: bundle)
+            if let bundle = Bundle.main.path(forResource: "FrenchMusic", ofType: "mp3") {
+                let alertSound = URL(fileURLWithPath: bundle)
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
                 try AVAudioSession.sharedInstance().setActive(true)
-                try audioPlayer = AVAudioPlayer(contentsOfURL: alertSound)
+                try audioPlayer = AVAudioPlayer(contentsOf: alertSound)
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()
             }
@@ -51,11 +51,11 @@ class MainScene: GamePlayScene {
     
     func playAudio2() {
         do {
-            if let bundle = NSBundle.mainBundle().pathForResource("laugh", ofType: "mp3") {
-                let alertSound = NSURL(fileURLWithPath: bundle)
+            if let bundle = Bundle.main.path(forResource: "laugh", ofType: "mp3") {
+                let alertSound = URL(fileURLWithPath: bundle)
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
                 try AVAudioSession.sharedInstance().setActive(true)
-                try audioPlayer2 = AVAudioPlayer(contentsOfURL: alertSound)
+                try audioPlayer2 = AVAudioPlayer(contentsOf: alertSound)
                 audioPlayer2.prepareToPlay()
                 audioPlayer2.play()
             }
@@ -67,25 +67,26 @@ class MainScene: GamePlayScene {
     override func didLoadFromCCB() {
         super.didLoadFromCCB()
         
-        highScoreLabel.string = String(defaults.integerForKey("highscore"))
+        highScoreLabel.string = String(defaults.integer(forKey: "highscore"))
      
         playAudio()
         
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
         _gamePhysicsNode.collisionDelegate = self
         
         hero = CCBReader.load("Character") as? Character
         _gamePhysicsNode.addChild(hero)
         
-        _gamePhysicsNode.gravity = CGPoint(x: 0.0, y: 0.0)
+        // makes the bun fall at the start of the gameplay scene
+        _gamePhysicsNode.gravity = CGPoint(x: 0.0, y: -800)
         
         
-        for var i = 1; i < 4; ++i {
+        for i in 1 ..< 4 {
             spawnNewObstacle()
         }
     }
     
-    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+    override func touchBegan(_ touch: CCTouch!, with event: CCTouchEvent!) {
         if (!isGameOver) {
             hero?.flap()
             sinceTouch = 0
@@ -107,17 +108,17 @@ class MainScene: GamePlayScene {
         _obstaclesLayer.addChild(obstacle)
     }
     
-    override func update(delta: CCTime) {
+    override func update(_ delta: CCTime) {
         super.update(delta)
         
-        for obstacle in obstacles.reverse() {
-            let obstacleWorldPosition = _gamePhysicsNode.convertToWorldSpace(obstacle.position)
-            let obstacleScreenPosition = convertToNodeSpace(obstacleWorldPosition)
+        for obstacle in obstacles.reversed() {
+            let obstacleWorldPosition = _gamePhysicsNode.convert(toWorldSpace: obstacle.position)
+            let obstacleScreenPosition = convert(toNodeSpace: obstacleWorldPosition)
             
             if obstacleScreenPosition.x < (-obstacle.contentSize.width) {
                 obstacle.removeFromParent()
-                if let index = obstacles.indexOf(obstacle) {
-                    obstacles.removeAtIndex(index)
+                if let index = obstacles.index(of: obstacle) {
+                    obstacles.remove(at: index)
                 }
                 
                 spawnNewObstacle()
@@ -126,13 +127,13 @@ class MainScene: GamePlayScene {
     }
     
     func restart() {
-        let scene = CCBReader.loadAsScene("MainScene")
-        CCDirector.sharedDirector().replaceScene(scene)
+        let scene = CCBReader.load(asScene: "MainScene")
+        CCDirector.shared().replace(scene)
     }
     
     func quit() {
-        let scene2 = CCBReader.loadAsScene("StartScene")
-        CCDirector.sharedDirector().replaceScene(scene2)
+        let scene2 = CCBReader.load(asScene: "StartScene")
+        CCDirector.shared().replace(scene2)
     }
     
     func gameOver() {
@@ -157,7 +158,7 @@ class MainScene: GamePlayScene {
             _highScoreLabel.visible = true
             highScoreLabel.visible = true
             
-            self.animationManager.runAnimationsForSequenceNamed("game over")
+            self.animationManager.runAnimations(forSequenceNamed: "game over")
             
             
             
@@ -171,32 +172,32 @@ class MainScene: GamePlayScene {
             
             //shake the screen
             let move = CCActionEaseBounceOut(action: CCActionMoveBy(duration: 0.1, position: ccp(0, 3)))
-            let moveBack = CCActionEaseBounceOut(action: move.reverse())
+            let moveBack = CCActionEaseBounceOut(action: move?.reverse())
             let shakeSequence = CCActionSequence(array: [move, moveBack])
-            runAction(shakeSequence)
+            run(shakeSequence)
         }
     }
     
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!,level: CCNode!) -> Bool {
+    func ccPhysicsCollisionBegin(_ pair: CCPhysicsCollisionPair!, hero: CCNode!,level: CCNode!) -> Bool {
         gameOver()
         return true
     }
     
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!,hero: CCNode!,goal: CCNode!) -> Bool {
+    func ccPhysicsCollisionBegin(_ pair: CCPhysicsCollisionPair!,hero: CCNode!,goal: CCNode!) -> Bool {
         goal.removeFromParent()
-        points++
+        points += 1
         _scoreLabel.string = String(points)
         _scoreLabelEnd.string = String(points)
         
-        let highscore = defaults.integerForKey("highscore")
+        let highscore = defaults.integer(forKey: "highscore")
         
         if points > highscore {
             
-            defaults.setInteger(points, forKey: "highscore")
+            defaults.set(points, forKey: "highscore")
             
         }
         
-        let highscoreShow = defaults.integerForKey("highscore")
+        let highscoreShow = defaults.integer(forKey: "highscore")
         highScoreLabel.string = String(highscoreShow)
         highscoreCount = highscoreShow
         
